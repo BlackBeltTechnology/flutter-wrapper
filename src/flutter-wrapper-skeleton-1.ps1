@@ -1,6 +1,6 @@
 $scriptDir = split-path -parent $MyInvocation.MyCommand.Definition
-$flutterDir = "$scriptDir\flutter"
-$flutter = "$scriptDir\flutter\bin\flutter"
+$flutterDir = "$scriptDir\.flutter"
+$flutter = "$scriptDir\.flutter\bin\flutter"
 
 if (!(Test-Path $flutterDir)) {
   Write-Output "Flutter not found, installing..."
