@@ -1,7 +1,7 @@
 #!/bin/sh
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [ "`uname`" = "Darwin" ]; then
   CHROME_BIN=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+elif [ "`uname`" = "Linux" ]; then
   CHROME_BIN=$(which google-chrome)
 else
   echo "Unsupported OS"
@@ -9,7 +9,7 @@ else
 fi
 
 echo "Chrome: $CHROME_BIN"
-if [[ ! -f "${CHROME_BIN}" ]]; then
+if [ ! -f "${CHROME_BIN}" ]; then
   echo "Google chrome not found"
   exit 1
 fi
