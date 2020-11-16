@@ -5,7 +5,7 @@ mkdir dist
 
 
 CHROME_WRAPPER_SH=$(base64 src/chrome-wrapper.sh)
-CHROME_WRAPPER_PS1=$(base64 src/Chrome-Wrapper.ps1)
+CHROME_WRAPPER_CMD=$(base64 src/Chrome-Wrapper.cmd)
 
 # Dlutterw linux/macOS
 
@@ -16,8 +16,8 @@ echo "  base64 -d <<<$CHROME_WRAPPER_SH > \$SCRIPT_DIR/chromew" >> dist/flutterw
 echo "  chmod +x \$SCRIPT_DIR/chromew" >> dist/flutterw
 
 echo "fi" >> dist/flutterw
-echo "if [[ ! -f \$SCRIPT_DIR/Chromew.ps1 ]]; then" >> dist/flutterw
-echo "  base64 -d <<<$CHROME_WRAPPER_PS1 > \$SCRIPT_DIR/Chromew.ps1" >> dist/flutterw
+echo "if [[ ! -f \$SCRIPT_DIR/Chromew.cmd ]]; then" >> dist/flutterw
+echo "  base64 -d <<<$CHROME_WRAPPER_CMD > \$SCRIPT_DIR/Chromew.cmd" >> dist/flutterw
 echo "fi" >> dist/flutterw
 
 cat src/flutter-wrapper-skeleton-2.sh >> dist/flutterw
@@ -32,10 +32,10 @@ echo "  \$Content = [System.Convert]::FromBase64String(\"$CHROME_WRAPPER_SH\")" 
 echo "  Set-Content -Path \$chromewsh -Value \$Content -Encoding Byte" >> dist/flutterw.ps1
 echo "}" >> dist/flutterw.ps1
 
-echo "\$chromewps1 = \"\$scriptDir\\\chromew.ps1\"" >> dist/flutterw.ps1
-echo "if (!(Test-Path \$chromewps1)) {" >> dist/flutterw.ps1
-echo "  \$Content = [System.Convert]::FromBase64String(\"$CHROME_WRAPPER_PS1\")" >> dist/flutterw.ps1
-echo "  Set-Content -Path \$chromewps1 -Value \$Content -Encoding Byte" >> dist/flutterw.ps1
+echo "\$chromewcmd = \"\$scriptDir\\\chromew.cmd\"" >> dist/flutterw.ps1
+echo "if (!(Test-Path \$chromewcmd)) {" >> dist/flutterw.ps1
+echo "  \$Content = [System.Convert]::FromBase64String(\"$CHROME_WRAPPER_CMD\")" >> dist/flutterw.ps1
+echo "  Set-Content -Path \$chromewcmd -Value \$Content -Encoding Byte" >> dist/flutterw.ps1
 echo "}" >> dist/flutterw.ps1
 
 cat src/flutter-wrapper-skeleton-2.ps1 >> dist/flutterw.ps1
