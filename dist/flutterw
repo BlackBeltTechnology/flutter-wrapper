@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/bin/bash
+
+###!/usr/bin/env sh
 
 # Attempt to set SCRIPT_DIR
 # Resolve links: $0 may be a link
