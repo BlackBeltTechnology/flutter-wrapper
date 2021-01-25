@@ -7,17 +7,18 @@ mkdir dist
 CHROME_WRAPPER_SH=$(base64 src/chrome-wrapper.sh)
 CHROME_WRAPPER_CMD=$(base64 src/Chrome-Wrapper.cmd)
 
-# Dlutterw linux/macOS
+# Flutterw linux/macOS
 
 cat src/flutter-wrapper-skeleton-1.sh > dist/flutterw
 
-echo "if [[ ! -f \$SCRIPT_DIR/chromew ]]; then" >> dist/flutterw
-echo "  base64 -d <<<$CHROME_WRAPPER_SH > \$SCRIPT_DIR/chromew" >> dist/flutterw
-echo "  chmod +x \$SCRIPT_DIR/chromew" >> dist/flutterw
-
-echo "fi" >> dist/flutterw
-echo "if [[ ! -f \$SCRIPT_DIR/Chromew.cmd ]]; then" >> dist/flutterw
-echo "  base64 -d <<<$CHROME_WRAPPER_CMD > \$SCRIPT_DIR/Chromew.cmd" >> dist/flutterw
+echo "if test -n \"${CHROME_CORS_DISABLE-}\"; then" >> dist/flutterw
+echo "  if [[ ! -f \$SCRIPT_DIR/chromew ]]; then" >> dist/flutterw
+echo "    base64 -d <<<$CHROME_WRAPPER_SH > \$SCRIPT_DIR/chromew" >> dist/flutterw
+echo "    chmod +x \$SCRIPT_DIR/chromew" >> dist/flutterw
+echo "  fi" >> dist/flutterw
+echo "  if [[ ! -f \$SCRIPT_DIR/Chromew.cmd ]]; then" >> dist/flutterw
+echo "    base64 -d <<<$CHROME_WRAPPER_CMD > \$SCRIPT_DIR/Chromew.cmd" >> dist/flutterw
+echo "  fi" >> dist/flutterw
 echo "fi" >> dist/flutterw
 
 cat src/flutter-wrapper-skeleton-2.sh >> dist/flutterw
