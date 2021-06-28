@@ -57,9 +57,11 @@ fi
 #The given flutter dir does not exists, checking out
 if [ ! -d "${FLUTTER_DIR}" ]; then
   echo "Flutter not found, installing..."
-  git clone https://github.com/flutter/flutter.git -b beta --depth 1 $FLUTTER_DIR
+  if [ -z $FLUTTER_CHANNEL ]; then
+    FLUTTER_CHANNEL=stable
+  fi
+  git clone https://github.com/flutter/flutter.git -b $FLUTTER_CHANNEL --depth 1 $FLUTTER_DIR
 fi
-
 # Flutter home not given, handling as submodule. When git parse does not now as submodule,
 # the FLUTTEr_HOME variable set earlier
 if test -z "${FLUTTER_HOME-}"; then
